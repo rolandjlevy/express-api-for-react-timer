@@ -6,6 +6,8 @@ moment.tz.setDefault('Europe/London');
 const cors = require('cors');
 app.use(cors());
 
+const loopDuration = 3;
+
 app.use((req, res, next) => {
   const origins = [ORIGIN_URI];
   if (origins.includes(req.query.origin)) {
@@ -17,11 +19,11 @@ app.use((req, res, next) => {
 });
 
 app.get('/', (req, res) => {
-  res.json('OK');
+  res.send('OK');
 });
 
 app.get('/cutoff', (req, res) => {
-  res.status(200).json({ time: moment().add(90, 'minutes').format() });
+  res.status(200).json({ time: moment().add(loopDuration, 'minutes').format() });
 });
 
 app.listen(PORT, () => {
