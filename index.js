@@ -9,8 +9,9 @@ app.use(cors());
 app.use((req, res, next) => {
   const origins = [ORIGIN_URI];
   if (origins.includes(req.query.origin)) {
-    res.header("Access-Control-Allow-Origin", req.query.origin);
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.setHeader("Access-Control-Allow-Origin", req.query.origin);
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   }
   next();
 });
@@ -20,7 +21,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/cutoff', (req, res) => {
-  res.status(200).json({ time: moment().add(2, 'minutes').format() });
+  res.status(200).json({ time: moment().add(90, 'minutes').format() });
 });
 
 app.listen(PORT, () => {
