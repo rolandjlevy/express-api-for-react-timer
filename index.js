@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 
 const corsOptions = {
   origin: [ORIGIN_URI_1, ORIGIN_URI_2],
-  allowedHeaders: ['Origin', 'Accept', 'Content-Type', 'X-Requested-With'],
+  allowedHeaders: ['Origin', 'Accept', 'Content-Type', 'X-Requested-With'] | '*',
   optionsSuccessStatus: 200
 }
 
